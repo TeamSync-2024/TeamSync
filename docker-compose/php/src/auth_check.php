@@ -49,6 +49,7 @@ if (!allRequiredSessionsSet($required_session_vars)) {
 
     // If the session variables are still not set, redirect to the login page
     if (!allRequiredSessionsSet($required_session_vars)) {
+        $_SESSION['redirect_to'] = $_SERVER['REQUEST_URI'];
         header("Location:../public/login.html");
         exit;
     }
@@ -60,9 +61,11 @@ if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 
     // Session has expired
     session_unset();
     session_destroy();
+    $_SESSION['redirect_to'] = $_SERVER['REQUEST_URI'];
     header("Location:../public/login.html");
     exit;
 }
 
 // Update the last activity time
 $_SESSION['last_activity'] = time();
+?>

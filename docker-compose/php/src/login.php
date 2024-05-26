@@ -66,7 +66,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
 
             // Redirect to the appropriate page after successful login
-            header("Location: ../index.php");
+            $redirectTo = isset($_SESSION['redirect_to']) ? $_SESSION['redirect_to'] : '../index.php';
+            unset($_SESSION['redirect_to']);
+            header("Location: $redirectTo");
             exit();
         } else {
             $error_message = "Invalid username or password.";

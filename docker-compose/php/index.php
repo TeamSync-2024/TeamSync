@@ -34,3 +34,17 @@ echo " <a href='./public/logout.php'>Logout</a>";
 // Close connection
 $conn->close();
 ?>
+
+<html>
+<head>
+    <title>Home Page</title>
+</head>
+<body>
+    <h1>Home Page</h1>
+    <p>This is the home page of the application.</p>
+    <a href="./src/user_page.php">
+        <button>User Page</button>
+    </a>
+</body>
+
+</html>

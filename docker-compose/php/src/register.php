@@ -56,7 +56,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Hash the password with a random salt
-    $password = password_hash($password, PASSWORD_DEFAULT, ['cost' => 12, 'salt' => mcrypt_create_iv(22, MCRYPT_DEV_URANDOM)]);
+    $salt = bin2hex(random_bytes(11)); // Generate a random salt
+    $password = password_hash($password, PASSWORD_DEFAULT, ['cost' => 12, 'salt' => $salt]);
 
     // Prepare and bind parameters for the check query
     $stmt = $conn->prepare("SELECT * FROM users WHERE username =? OR email =?");
