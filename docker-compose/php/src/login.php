@@ -33,9 +33,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $storedPasswordHash = $row['password'];
 
         if (password_verify($password, $storedPasswordHash)) {
-        $storedPasswordHash = $row['password'];
-
-        if (password_verify($password, $storedPasswordHash)) {
             $_SESSION['user_id'] = $row['id'];
             $_SESSION['username'] = $row['username'];
 
