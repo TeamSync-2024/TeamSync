@@ -1,15 +1,12 @@
 <?php
-// Database connection parameters
-$servername = "di_inter_tech_mysql"; // Change this to your database server name if necessary
-$username = "webuser"; // Change this to your database username
-$password = "webpass"; // Change this to your database password
-$dbname = "di_internet_technologies_project"; // Change this to your database name
 
 // First, include the authentication checker
 require_once './src/auth_check.php';
 
-// Now, proceed with the database connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+require_once './src/config.php';
+
+$conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+
 
 // Check connection
 if ($conn->connect_error) {
