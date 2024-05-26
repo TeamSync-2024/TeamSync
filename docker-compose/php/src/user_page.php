@@ -1,6 +1,6 @@
 <?php
+
 require_once 'auth_check.php';
-session_start();
 
 // Display user information
 $username = $_SESSION['username'];

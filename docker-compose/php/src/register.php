@@ -38,12 +38,12 @@ function displayError($message) {
  */
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validate and sanitize user inputs
-    $first_name = filter_input(INPUT_POST, 'first_name', FILTER_SANITIZE_STRING);
-    $last_name = filter_input(INPUT_POST, 'last_name', FILTER_SANITIZE_STRING);
-    $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
-    $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
+    $first_name = filter_input(INPUT_POST, 'first_name', FILTER_UNSAFE_RAW);
+    $last_name = filter_input(INPUT_POST, 'last_name', FILTER_UNSAFE_RAW);
+    $username = filter_input(INPUT_POST, 'username', FILTER_UNSAFE_RAW);
+    $password = filter_input(INPUT_POST, 'password', FILTER_UNSAFE_RAW);
     $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
-    $simplepush_key = filter_input(INPUT_POST, 'simplepush_key', FILTER_SANITIZE_STRING);
+    $simplepush_key = filter_input(INPUT_POST, 'simplepush_key', FILTER_UNSAFE_RAW);
 
     /**
      * Check if any required fields are empty.
@@ -55,9 +55,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         displayError($errorMessage);
     }
 
-    // Hash the password with a random salt
-    $salt = bin2hex(random_bytes(11)); // Generate a random salt
-    $password = password_hash($password, PASSWORD_DEFAULT, ['cost' => 12, 'salt' => $salt]);
+    // Hash the password using the built-in salting mechanism
+    $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 
     // Prepare and bind parameters for the check query
     $stmt = $conn->prepare("SELECT * FROM users WHERE username =? OR email =?");
@@ -75,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         // Prepare and execute the insert statement
         $stmt = $conn->prepare("INSERT INTO users (first_name, last_name, username, password, email, simplepush_key) VALUES (?,?,?,?,?,?)");
-        $stmt->bind_param("ssssss", $first_name, $last_name, $username, $password, $email, $simplepush_key);
+        $stmt->bind_param("ssssss", $first_name, $last_name, $username, $passwordHash, $email, $simplepush_key);
 
         if ($stmt->execute()) {
             // Send a SimplePush notification upon successful registration
@@ -96,3 +95,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 $conn->close();
+?>
