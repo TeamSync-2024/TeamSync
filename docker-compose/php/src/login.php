@@ -92,5 +92,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn->close();
 } // Closing brace added here
 ?>
-
-<!-- na valw mplampla -->
