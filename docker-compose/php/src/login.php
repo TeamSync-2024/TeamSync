@@ -30,7 +30,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
-        if (password_verify($password, $row['password'])) {
+        $storedPasswordHash = $row['password'];
+
+        if (password_verify($password, $storedPasswordHash)) {
             $_SESSION['user_id'] = $row['id'];
             $_SESSION['username'] = $row['username'];
 

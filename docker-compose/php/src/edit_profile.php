@@ -28,12 +28,12 @@ $user = $result->fetch_assoc();
 $stmt->close();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $first_name = filter_input(INPUT_POST, 'first_name', FILTER_SANITIZE_STRING);
-    $last_name = filter_input(INPUT_POST, 'last_name', FILTER_SANITIZE_STRING);
-    $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
+    $first_name = filter_input(INPUT_POST, 'first_name', FILTER_UNSAFE_RAW);
+    $last_name = filter_input(INPUT_POST, 'last_name', FILTER_UNSAFE_RAW);
+    $username = filter_input(INPUT_POST, 'username', FILTER_UNSAFE_RAW);
     $new_password = filter_input(INPUT_POST, 'password', FILTER_UNSAFE_RAW); // Get the new password without sanitizing it
     $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-    $simplepush_key = filter_input(INPUT_POST, 'simplepush_key', FILTER_SANITIZE_STRING);
+    $simplepush_key = filter_input(INPUT_POST, 'simplepush_key', FILTER_UNSAFE_RAW);
 
     // Ensure $userId is defined and holds the correct user ID
     $userId = $_SESSION['user_id'];
@@ -41,9 +41,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // If a new password is provided, use it; otherwise, use the existing password
     $password = $user['password']; // Default to the existing hashed password
     if (!empty($new_password)) {
-        // Hash the new password with a random salt
-        $salt = bin2hex(random_bytes(11)); // Generate a random salt
-        $password = password_hash($new_password, PASSWORD_DEFAULT, ['cost' => 12, 'salt' => $salt]);
+        // Hash the new password using the built-in salting mechanism
+        $password = password_hash($new_password, PASSWORD_DEFAULT);
     }
 
     $sql = "UPDATE users SET first_name = ?, last_name = ?, username = ?, password = ?, email = ?, simplepush_key = ? WHERE id = ?";
