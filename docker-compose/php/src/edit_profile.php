@@ -56,6 +56,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $stmt->bind_param("ssssssi", $first_name, $last_name, $username, $password, $email, $simplepush_key, $userId);
 
+        $sql = "SELECT * FROM users WHERE id = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $user = $result->fetch_assoc();
+        $stmt->close();
+        $pushKey = $user['simplepush_key'];
+
+        //now we will send the message with the class
+        $push = new simplePushNotification();
+        $push->sendNotification($pushKey, "New Task Assigned", "You have been assigned a new task: ".$task_name); 
         if ($stmt->execute()) {
             // Send a SimplePush notification upon successful update
             $pushKey = $user['simplepush_key'];
