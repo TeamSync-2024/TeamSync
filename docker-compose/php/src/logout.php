@@ -1,3 +1,11 @@
+<?php
+
+//logout.php
+session_start();
+session_unset();
+session_destroy();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,8 +18,11 @@
 <body>
     <div id="header-container"></div>
     <main>
-        <h1>Καλωσήρθατε στο TeamSync</h1>
-        <h2>Συνεργασία χωρίς εμπόδια, οπουδήποτε και ανά πάσα στιγμή.</h2>
+      <h1>Έχετε αποσυνδεθεί με επιτυχία</h1>
+      <p>
+        Κάνετε κλικ <a href="../public/login.html">εδώ</a> για να συνδεθείτε ξανά. <br><br>
+        Επιστροφή στην <a href="frontPage.html">αρχική</a>.
+      </p>
     </main>
     <div id="footer-container"></div>
 </body>

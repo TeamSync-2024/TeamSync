@@ -1,36 +1,45 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <title>User Registration</title>
-</head>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TeamSync - Task Management Website</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>    
 <body>
-    <h2>User Registration Form</h2>
-    <form action="../src/register.php" method="post">
-        <label for="first_name">First Name:</label><br>
+  <div id="header-container"></div>
+    <main>
+      <h1>Εγγραφή Χρήστη</h1>
+      <form action="../src/register.php" method="post">
+        <label for="first_name"><b>Όνομα:</b></label><br>
         <input type="text" id="first_name" name="first_name" required><br><br>
-
-        <label for="last_name">Last Name:</label><br>
+  
+        <label for="last_name"><b>Επώνυμο:</b></label><br>
         <input type="text" id="last_name" name="last_name" required><br><br>
-
-        <label for="username">Username:</label><br>
+  
+        <label for="username"><b>Username:</b></label><br>
         <input type="text" id="username" name="username" required><br><br>
-
-        <label for="password">Password:</label><br>
+  
+        <label for="password"><b>Κωδικός:</b></label><br>
         <input type="password" id="password" name="password" required><br><br>
-
-        <label for="email">Email:</label><br>
+  
+        <label for="email"><b>Email:</b></label><br>
         <input type="email" id="email" name="email" required><br><br>
-
-        <label for="simplepush_key">SimplePush.io Key:</label><br>
+  
+        <label for="simplepush_key"><b>SimplePush.io Key:</b></label><br>
         <input type="text" id="simplepush_key" name="simplepush_key" required><br><br>
-
-        <input type="submit" value="Register">
+  
+        <button type="submit" value="Register" class="button">Εγγραφή</button>
+        
     </form>
-    <a href="./login.html">
-        <button>Sign In</button>
-    </a>
+    <p>Είστε ήδη μέλος;
+        <a href="./login.html">
+            <button>Log In</button>
+        </a>
+    </p>
+    </main>
+  <div id="footer-container"></div>    
 </body>
 
 </html>

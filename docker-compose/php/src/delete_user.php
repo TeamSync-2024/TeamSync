@@ -1,6 +1,5 @@
 <?php
 require_once 'auth_check.php';
-session_start();
 
 // Check if the form was submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -17,16 +16,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delete Profile</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TeamSync - Task Management Website</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
-    <h1>Delete Profile</h1>
-    <p>Are you sure you want to delete your profile?</p>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-        <input type="submit" value="Delete Profile">
-    </form>
-    <p><a href="user_profile.php">Cancel</a></p>
+    <main>
+        <div id="header-container"></div>
+        <h1>Διαγραφή Προφίλ</h1>
+        <p>Είστε σίγουροι πως θέλετε να διαγράψετε το προφίλ σας;</p>
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+            <button type="submit" value="Delete Profile">Διαγραφή Προφίλ</button>
+        </form>
+        <p><a href="user_profile.php"><button>Ακύρωση</button></a></p>
+    </main>
+    <div id="footer-container"></div>
 </body>
 </html>
