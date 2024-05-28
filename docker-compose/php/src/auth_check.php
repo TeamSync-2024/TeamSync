@@ -1,6 +1,5 @@
 <?php
 // auth_checker.php
-
 // Start the session
 session_start();
 
@@ -26,6 +25,11 @@ if (!allRequiredSessionsSet($required_session_vars)) {
 
         // Connect to the database
         $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
 
         // Prepare and execute the select statement
         $stmt = $conn->prepare("SELECT id, username FROM users WHERE remember_token = ? AND remember_token_expiry > ?");
@@ -68,4 +72,35 @@ if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 
 
 // Update the last activity time
 $_SESSION['last_activity'] = time();
+
+// Authorization check function
+function user_has_access_to_list($user_id, $list_id, $conn) {
+    $stmt = $conn->prepare("SELECT * FROM task_lists WHERE id = ? AND user_id = ?");
+    $stmt->bind_param("ii", $list_id, $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    return $result->num_rows > 0;
+}
+
+// Check if the user has access to the requested list
+function check_list_access($conn, $list_id) {
+    if (!user_has_access_to_list($_SESSION['user_id'], $list_id, $conn)) {
+        // User doesn't have access to the list, redirect to an error page or somewhere else
+        header("Location:../public/lists.php");
+        exit;
+    }
+}
+
+// Establish database connection
+$conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Check if the request is accessing a list page
+if (isset($_GET['list_id'])) {
+    check_list_access($conn, $_GET['list_id']);
+}
+
+$conn->close();
 ?>
