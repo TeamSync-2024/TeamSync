@@ -1,58 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="author" content="voltmaister & marked-d">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TeamSync</title>
-  <link rel="stylesheet" href="../assets/styles.css">
-  <script src="../assets/script.js" defer></script>
+    <title>User Login</title>
 </head>
 <body>
-  <div id="header_container"></div>
-  <main class="vertical">
-    
-    <div class="center">
-      <h1>Σύνδεση Χρήστη</h1>
-    </div>
-    
-    <div class="center">
-      <div class="max_width">
-        <form action="../src/login.php" method="post">
-          <label for="username"><b>Username:</b></label><br>
-          <input type="text" id="username" name="username" required><br><br>
-    
-          <label for="password"><b>Κωδικός:</b></label><br>
-          <input type="password" id="password" name="password" required><br><br>
+    <h2>User Login</h2>
+    <form action="../src/login.php" method="post">
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username" required><br><br>
 
-          <label for="remember_me">Μείνε συνδεδεμένος</label>
-          <input type="checkbox" id="remember_me" name="remember_me">
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" required><br><br>
 
-          <div class="center">
-            <button type="submit" value="Login" class="button">Log In</button>
-          </div>
-        </form>
-      </div>
-    </div>
-
-    <div><br></div>
-
-    <div class="center">   
-      <div class="max_width">
-
-        <div class="center">
-          <p>Δεν είστε μέλος;</p>
-        </div>
-
-        <div>
-          <a href="./register.html"><button>Εγγραφείτε τώρα!</button></a>
-        </div>
+        <label for="remember_me">Remember Me</label>
+        <input type="checkbox" id="remember_me" name="remember_me">
         
-      </div>    
+        <input type="submit" value="Login">
 
-    </div>
-
-  </main>
-  <div id="footer_container"></div>
+    </form>
+    <a href="./register.html">
+        <button>Register NOW!</button>
+    </a>
 </body>
 </html>
