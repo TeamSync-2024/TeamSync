@@ -18,7 +18,7 @@ function loadHeaderFooter() {
       themeToggle.addEventListener("click", () => {
         body.classList.toggle("dark-mode");
         const isDarkMode = body.classList.contains("dark-mode");
-        themeToggle.textContent = isDarkMode ? "Light Mode" : "Dark Mode"; 
+        // =themeToggle.textContent = isDarkMode ? "Light Mode" : "Dark Mode"; // changed to &#9790; / &#9728;
         document.cookie = `theme=${isDarkMode ? "dark" : "light"}; path=/`;
       });
 
