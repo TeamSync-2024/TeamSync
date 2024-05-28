@@ -98,7 +98,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
 
             ob_end_clean();
-            header("Location: ../public/tasks.php?list_id=" . $task['task_list_id']);
+            /* header("Location: ../public/tasks.php?list_id=" . $task['task_list_id']); */
             exit;
         } else {
             error_log("Execute failed: (" . $stmt->errno . ") " . $stmt->error);
