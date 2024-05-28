@@ -7,6 +7,10 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 $list_id = isset($_GET['list_id']) ? $_GET['list_id'] : null;
+if (!$list_id) {
+    header("Location: ../public/lists.php");
+    exit(); // Ensure no further code is executed after the redirect
+}
 ?>
 
 <!DOCTYPE html>
@@ -50,16 +54,18 @@ $list_id = isset($_GET['list_id']) ? $_GET['list_id'] : null;
                     // Iterate over the data and create list items
                     $.each(data, function(index, item) {
                         var listItem = $('<div class="list">');
+                        // Add the hidden_id to the list item as hidden text
+                        listItem.append('<input type="hidden" value="' + item.id + '">');
                         listItem.append('<h2>' + item.title + '</h2>');
                         listItem.append('<p>' + item.description + '</p>');
-
                         // Convert the due_date string to a Date object
                         var dueDate = new Date(item.due_date);
                         // Format the date as desired (e.g., "May 15, 2024")
                         var formattedDueDate = dueDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
                         listItem.append('<p>Finished By: ' + formattedDueDate + '</p>');
-
                         listItem.append('<p>Status: ' + item.status + '</p>');
+                        listItem.append('<a href="../src/edit_task.php?task_id=' + encodeURIComponent(item.id) + '">View Tasks</a>');
+
                         // Append the list item to the container
                         $('#lists-container').append(listItem);
                     });
@@ -70,6 +76,8 @@ $list_id = isset($_GET['list_id']) ? $_GET['list_id'] : null;
             });
         });
     </script>
-
+    <!-- back to lists -->
+    <a href="./lists.php">
+        <button>Back to Lists</button>
 </body>
 </html>

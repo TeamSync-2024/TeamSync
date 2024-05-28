@@ -12,10 +12,11 @@ if ($conn->connect_error) {
 $list_id = isset($_GET['list_id'])? $_GET['list_id'] : null;
 
 if (!$list_id) {
-    die("List ID is missing.");
+    header("Location: ../public/lists.php");
+    exit();
 }
 
-$sql = "SELECT * FROM tasks WHERE task_list_id =?";
+$sql = "SELECT * FROM tasks WHERE task_list_id =? AND status != 'completed' ORDER BY due_date ASC";
 $stmt = $conn->prepare($sql);
 
 function toJson($result) {
@@ -25,7 +26,8 @@ function toJson($result) {
             "title" => $row['title'],
             "description" => $row['description'],
             "due_date" => $row['due_date'],
-            "status" => $row['status']
+            "status" => $row['status'],
+            "id" => $row['id']
         );
     }
     return json_encode($data);

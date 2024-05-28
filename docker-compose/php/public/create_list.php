@@ -19,5 +19,9 @@ require_once '../src/auth_check.php';
         <input type="text" name="list_description" placeholder="List Description">
         <input type="submit" value="Create List">
     </form>
+    <!-- return to lists as button-->
+    <a href="../public/lists.php">
+        <button>Return to Lists</button>
+
 </body>
 </html>

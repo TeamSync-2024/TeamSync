@@ -55,5 +55,33 @@ require_once '../src/config.php';
             });
         });
     </script>
+    <h2>Assigned to me </h2>
+<div id="tasks-container"></div>
+
+<script>
+    $.ajax({
+        url: '../src/get_independent_task.php',
+        type: 'GET',
+        dataType: 'json',
+        success: function(data) {
+            $('#tasks-container').empty();
+            $.each(data, function(index, item) {
+                var listItem = $('<div class="list">');
+                listItem.append('<h2>' + item.title + '</h2>');
+                listItem.append('<p>' + item.description + '</p>');
+                var dueDate = new Date(item.due_date);
+                var formattedDueDate = dueDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+                listItem.append('<p>Finished By: ' + formattedDueDate + '</p>');
+                listItem.append('<p>Status: ' + item.status + '</p>');
+                listItem.append('<p>Assigned To: ' + item.assigned_users + '</p>');
+                listItem.append('<a href="../src/edit_task.php?task_id=' + encodeURIComponent(item.id) + '">View Task</a>');
+                $('#tasks-container').append(listItem);
+            });
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error('Error fetching tasks:', textStatus, errorThrown);
+        }
+    });
+</script>
 </body>
 </html>

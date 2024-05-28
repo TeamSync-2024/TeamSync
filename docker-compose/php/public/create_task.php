@@ -3,6 +3,10 @@ require_once '../src/auth_check.php';
 require_once '../src/config.php';
 
 $list_id = isset($_GET['list_id'])? $_GET['list_id'] : null;
+if (!$list_id) {
+    header("Location: ../public/lists.php");
+    exit();
+}
 $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
 if ($conn->connect_error) {
