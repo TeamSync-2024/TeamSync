@@ -57,6 +57,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->execute();
         $stmt->close();
 
+        // send notification to the user using the user_id to find the key for the simplePushNotification class
+        $sql = "SELECT * FROM users WHERE id = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $user = $result->fetch_assoc();
+        $stmt->close();
+        $pushKey = $user['simplepush_key'];
+
+        //now we will send the message with the class
+        $push = new simplePushNotification();
+        $push->sendNotification($pushKey, "New Task Assigned", "You have been assigned a new task: ".$task_name);   
+
         // Commit the transaction
         $conn->commit();
         ob_end_clean();
