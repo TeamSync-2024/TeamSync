@@ -6,19 +6,16 @@ require_once '../src/config.php';
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task Lists</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <style>
-       .list {
-            border: 1px solid #ccc;
-            padding: 10px;
-            margin-bottom: 10px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="author" content="voltmaister & marked-d">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TeamSync</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+  <script src="../assets/script.js" defer></script>
 </head>
 <body>
+  <div id="header_container"></div>
+  <main class="vertical">
     <h1>Task Lists</h1>
     <div id="lists-container"></div>
 
@@ -83,5 +80,7 @@ require_once '../src/config.php';
         }
     });
 </script>
+</main>
+  <div id="footer_container"></div>
 </body>
 </html>

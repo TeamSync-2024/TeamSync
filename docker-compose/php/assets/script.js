@@ -1,9 +1,9 @@
 // Header footer template
 function loadHeaderFooter() {
-  const headerContainer = document.getElementById('header-container');
-  const footerContainer = document.getElementById('footer-container');
+  const headerContainer = document.getElementById('header_container');
+  const footerContainer = document.getElementById('footer_container');
 
-  fetch('header-footer.html')
+  fetch('../assets/header_footer.html')
     .then(response => response.text())
     .then(data => {
       const parser = new DOMParser();
@@ -18,7 +18,7 @@ function loadHeaderFooter() {
       themeToggle.addEventListener("click", () => {
         body.classList.toggle("dark-mode");
         const isDarkMode = body.classList.contains("dark-mode");
-        themeToggle.textContent = isDarkMode ? "Light Mode" : "Dark Mode"; 
+        // =themeToggle.textContent = isDarkMode ? "Light Mode" : "Dark Mode"; // changed to &#9790; / &#9728;
         document.cookie = `theme=${isDarkMode ? "dark" : "light"}; path=/`;
       });
 
