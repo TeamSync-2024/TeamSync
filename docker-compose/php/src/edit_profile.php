@@ -70,33 +70,41 @@ $conn->close();
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Edit Profile</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TeamSync - Task Management Website</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
+    <div id="header-container"></div>
+    <main>
 <form action="" method="post">
-    <label for="first_name">First Name:</label>
-    <input type="text" id="first_name" name="first_name" value="<?php echo $user['first_name']; ?>">
+    <h1>Ενημέρωση Προφίλ</h1>
+    <label for="first_name"><b>Όνομα:</b></label><br>
+    <input type="text" id="first_name" name="first_name" value="<?php echo $user['first_name']; ?>"><br><br>
 
-    <label for="last_name">Last Name:</label>
-    <input type="text" id="last_name" name="last_name" value="<?php echo $user['last_name']; ?>">
+    <label for="last_name"><b>Επώνυμο:</b></label><br>
+    <input type="text" id="last_name" name="last_name" value="<?php echo $user['last_name']; ?>"><br><br>
 
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" value="<?php echo $user['username']; ?>">
+    <label for="username"><b>Username:</b></label><br>
+    <input type="text" id="username" name="username" value="<?php echo $user['username']; ?>"><br><br>
 
-    <label for="password">Password:</label>
-    <input type="text" id="password" name="password" value="">
+    <label for="password"><b>Κωδικός:</b></label><br>
+    <input type="text" id="password" name="password" value=""><br><br>
 
-    <label for="email">Email:</label>
-    <input type="text" id="email" name="email" value="<?php echo $user['email']; ?>">
+    <label for="email"><b>Email:</b></label><br>
+    <input type="text" id="email" name="email" value="<?php echo $user['email']; ?>"><br><br>
 
-    <label for="simplepush_key">SimplePush Key:</label>
-    <input type="text" id="simplepush_key" name="simplepush_key" value="<?php echo $user['simplepush_key']; ?>">
+    <label for="simplepush_key"><b>SimplePush.io Key:</b></label><br>
+    <input type="text" id="simplepush_key" name="simplepush_key" value="<?php echo $user['simplepush_key']; ?>"><br><br>
 
-    <button type="submit" name="update">Update Profile</button>
+    <button type="submit" name="update">Ενημέρωση Προφίλ</button><br><br>
 </form>
     <a href="./user_page.php">
-        <button>Cancel</button>
+        <button>Ακύρωση</button>
     </a>
+    </main>
+    <div id="footer-container"></div>
 </body>
 </html>

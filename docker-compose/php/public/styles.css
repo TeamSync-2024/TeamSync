@@ -5,6 +5,25 @@ body {
   padding: 20px;
   background-color: #FFFFFF;
   color: #1d3858;
+  border: solid; /* test */
+}
+
+main{
+  border: solid;
+  display: flex;
+}
+
+.vertical{
+  flex-direction: column;
+}
+
+div{
+  border: solid;
+}
+
+a {
+  text-decoration: none;  /*Removes underline */
+  color: inherit; /* Keeps the original color */
 }
 
 header {
@@ -13,6 +32,7 @@ header {
   align-items: center;
   margin-bottom: 20px;
   border-bottom: 1px solid #375A82;
+  border: solid;
 }
 
 .logo {
@@ -28,26 +48,41 @@ header {
 .logo h1 {
   color: #2599ff;
   margin: 0;
-  font-size: 2.5rem;
+  font-size: 50px;
+}
+
+nav{
+  display: flex;
+  padding: 10px;
 }
 
 button {
+  display: flex;
   background-color: #375A82;
   color: #FFFFFF;
   border: none;
   padding: 10px 20px;
   cursor: pointer;
   border-radius: 20px;
+  margin: 5px;
 }
+
+.btn {
+  text-decoration: none;
+  padding: 0.5rem;
+  border: 1px solid #333333;
+}
+
 
 footer {
   background-color: #FFFFFF;
   color: #1963b4;
   text-align: center;
-  padding: 20px;
+  padding: 10px;
   margin-top: 20px;
-  font-size: larger;
+  font-size: medium;
   border-top: 1px solid #375A82;
+  border: solid;
 }
 
 .accordion {
@@ -55,7 +90,7 @@ footer {
   color: #375A82;
   cursor: pointer;
   padding: 18px;
-  width: 100%;
+  width: auto;
   text-align: left;
   border: none;
   outline: none;
@@ -70,10 +105,10 @@ footer {
   transition: max-height 0.2s ease-out;
 }
 
-/* Dark Theme */
+/* Dark Mode */
 .dark-mode {
   background-color: #20262d;
-  color: #FFFFFF;
+  color: #dff0ff;
 }
 
 .dark-mode .accordion {
@@ -87,7 +122,7 @@ footer {
 }
 
 .dark-mode .logo h1 {
-  color: #FFFFFF;
+  color: #dff0ff;
 }
 
 .dark-mode button {
@@ -97,5 +132,5 @@ footer {
 
 .dark-mode footer {
   background-color: #20262d;
-  color: #FFFFFF;
+  color: #dff0ff;
 }
