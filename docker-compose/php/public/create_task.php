@@ -37,21 +37,42 @@ $conn->close();
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="author" content="voltmaister & marked-d">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TeamSync</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+  <script src="../assets/script.js" defer></script>
 </head>
 <body>
-    <!-- Display the list_name -->
-    <p>You are making a task for: <?php echo ($list_name);?></p>
-    
-    New task form
-    <form action="../src/make_task.php?list_id=<?php echo htmlspecialchars($list_id);?>" method="post">
-        <input type="hidden" name="list_id" value="<?php echo htmlspecialchars($list_id);?>">
-        <input type="text" name="task_title" placeholder="Task Name" required>
-        <textarea name="task_description" placeholder="Task Description" required></textarea>
-        <input type="date" name="task_due_date" required>
-        <input type="submit" value="Create Task">
-    </form>
+  <div id="header_container"></div>
+  <main class="vertical">
+    <div class="center">
+        <h2>Δημιουργείτε μια νέα εργασία για τη λίστα: <b><?php echo ($list_name);?></b></h2>
+    </div>
+    <div class="center">
+        <div class="max_width">
+            <form action="../src/make_task.php?list_id=<?php echo htmlspecialchars($list_id);?>" method="post">
+
+                <input type="hidden" name="list_id" value="<?php echo htmlspecialchars($list_id);?>">
+
+                <label for="task_title"><b>Όνομα Εργασίας:</b></label><br>
+                <input type="text" name="task_title" placeholder="Όνομα εργασίας" required><br><br>
+
+                <label for="task_description"><b>Περιγραφή Εργασίας:</b></label><br>
+                <textarea name="task_description" cols="26" rows="3" placeholder="Περιγραφή εργασίας" required></textarea><br><br>
+
+                <label for="task_due_date"><b>Ημερομηνία Προθεσμίας:</b></label><br>
+                <input type="date" name="task_due_date" required><br><br>
+                
+                <div class="center">
+                    <button type="submit" value="Create Task">Δημιουργία Εργασίας</button> 
+                </div>
+                
+            </form>
+        </div>
+    </div>
+    </main>
+  <div id="footer_container"></div>
 </body>
 </html>

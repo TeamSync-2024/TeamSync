@@ -6,26 +6,22 @@ require_once '../src/config.php';
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task Lists</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <style>
-       .list {
-            border: 1px solid #ccc;
-            padding: 10px;
-            margin-bottom: 10px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="author" content="voltmaister & marked-d">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TeamSync</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+  <script src="../assets/script.js" defer></script>  
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <h1>Task Lists</h1>
+  <div id="header_container"></div>
+  <main class="vertical">
+    <div>
+      <h1>Task Lists</h1>  
+    </div>
+
     <div id="lists-container"></div>
-
-    <a href="./create_list.php">
-        <button>Create List</button>
-    </a>
-
     <script>
         $(document).ready(function() {
             // Fetch the task lists using AJAX
@@ -55,33 +51,42 @@ require_once '../src/config.php';
             });
         });
     </script>
-    <h2>Assigned to me </h2>
-<div id="tasks-container"></div>
+    <div>
+        <a href="./create_list.php"><button>Create List</button></a>    
+    </div>
 
-<script>
-    $.ajax({
-        url: '../src/get_independent_task.php',
-        type: 'GET',
-        dataType: 'json',
-        success: function(data) {
-            $('#tasks-container').empty();
-            $.each(data, function(index, item) {
-                var listItem = $('<div class="list">');
-                listItem.append('<h2>' + item.title + '</h2>');
-                listItem.append('<p>' + item.description + '</p>');
-                var dueDate = new Date(item.due_date);
-                var formattedDueDate = dueDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-                listItem.append('<p>Finished By: ' + formattedDueDate + '</p>');
-                listItem.append('<p>Status: ' + item.status + '</p>');
-                listItem.append('<p>Assigned To: ' + item.assigned_users + '</p>');
-                listItem.append('<a href="../src/edit_task.php?task_id=' + encodeURIComponent(item.id) + '">View Task</a>');
-                $('#tasks-container').append(listItem);
-            });
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            console.error('Error fetching tasks:', textStatus, errorThrown);
-        }
-    });
-</script>
+    <div>
+        <h2>Assigned to me </h2> 
+    </div>
+    
+    <div id="tasks-container"></div>
+    <script>
+        $.ajax({
+            url: '../src/get_independent_task.php',
+            type: 'GET',
+            dataType: 'json',
+            success: function(data) {
+                $('#tasks-container').empty();
+                $.each(data, function(index, item) {
+                    var listItem = $('<div class="list">');
+                    listItem.append('<h2>' + item.title + '</h2>');
+                    listItem.append('<p>' + item.description + '</p>');
+                    var dueDate = new Date(item.due_date);
+                    var formattedDueDate = dueDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+                    listItem.append('<p>Finished By: ' + formattedDueDate + '</p>');
+                    listItem.append('<p>Status: ' + item.status + '</p>');
+                    listItem.append('<p>Assigned To: ' + item.assigned_users + '</p>');
+                    listItem.append('<a href="../src/edit_task.php?task_id=' + encodeURIComponent(item.id) + '">View Task</a>');
+                    $('#tasks-container').append(listItem);
+                });
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.error('Error fetching tasks:', textStatus, errorThrown);
+            }
+        });
+    </script>
+    
+    </main>
+  <div id="footer_container"></div>
 </body>
 </html>

@@ -85,7 +85,7 @@ $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
       <h2 class="accordion">Ξεκινήστε τώρα</h2>
       <div class="panel">
         <p>Γίνετε μέλος χιλιάδων ομάδων που επωφελούνται ήδη από το TeamSync. Εγγραφείτε τώρα και ανακαλύψτε πόσο απλή και αποτελεσματική μπορεί να είναι η ομαδική συνεργασία.</p>
-        <a href="../public/register.html"><button>Εγγραφείτε δωρεάν</button></a>
+        <a href="#"><button>Εγγραφείτε δωρεάν</button></a>
       </div>
     </div>
 

@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 require_once 'config.php';
 
 $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
@@ -46,9 +45,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 // Update the user's remember_token and remember_token_expiry in the database
                 $updateStmt = $conn->prepare("UPDATE users SET remember_token = ?, remember_token_expiry = ? WHERE id = ?");
+
                 if ($updateStmt === false) {
                     die("Error preparing the update statement: " . $conn->error);
                 }
+
                 $updateStmt->bind_param("ssi", $rememberToken, $expirationTime, $row['id']);
                 $updateStmt->execute();
                 $updateStmt->close();
@@ -57,9 +58,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             } else {
                 // If the user didn't check the "Remember Me" checkbox, clear the remember token
                 $updateStmt = $conn->prepare("UPDATE users SET remember_token = NULL, remember_token_expiry = NULL WHERE id = ?");
+
                 if ($updateStmt === false) {
                     die("Error preparing the update statement: " . $conn->error);
                 }
+
                 $updateStmt->bind_param("i", $row['id']);
                 $updateStmt->execute();
                 $updateStmt->close();
@@ -83,7 +86,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $stmt->close();
     $conn->close();
-}
+} // Closing brace added here
 ?>
-
-<!-- na valw mplampla -->

@@ -92,39 +92,51 @@ $conn->close();
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="author" content="voltmaister & marked-d">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TeamSync</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+  <script src="../assets/script.js" defer></script>
 </head>
 <body>
-    <form action="" method="post">
-        <label for="task_title">Task: <?php echo $task['title']; ?> </label>
-        <br>
-        <br>
-        <label for="description">Description</label>
-        <br>
-        <textarea name="task_description" placeholder="Task Description" required><?php echo $task['description']; ?></textarea>
-        <br>
-        <br>
-        <label for="status">Status: </label>
-        <select name="task_status">
-            <option value="pending" <?php echo $task['status'] === 'pending' ? 'selected' : ''; ?>>pending</option>
-            <option value="in-progress" <?php echo $task['status'] === 'in-progress' ? 'selected' : ''; ?>>In Progress</option>
-            <option value="completed" <?php echo $task['status'] === 'completed' ? 'selected' : ''; ?>>Completed</option>
-        </select>
-        <br>
-        <br>
-        <label for="due_date">Due Date</label>
-        <input type="date" name="task_due_date" value="<?php echo $task['due_date']; ?>" required>
-        <br>
-        <br>
-        <label for="assigned_to">Assigned To (separate usernames with commas): </label>
-        <input type="text" name="assigned_usernames" value="<?php echo implode(", ", array_column($assigned_users, 'username')); ?>" placeholder="Enter usernames separated by commas">
-        <br>
-        <br>
-        <input type="submit" value="Update Task">
-    </form>
-    <a href="../public/tasks.php?list_id=<?php echo $task['task_list_id']; ?>">
-        <button>Cancel</button>
+  <div id="header_container"></div>
+  <main class="vertical">
+    <div class="center">
+        <h1>Εργασία: <?php echo $task['title']; ?></b></h1>
+    </div>
+
+    <div class="center">
+        <div class="max_width">
+            <form action="" method="post">
+
+                <label for="description"><b>Περιγραφή Εργασίας:</b></label><br>
+                <textarea name="description" placeholder="Περιγραφή εργασίας" cols="35" rows="5" required><?php echo $task['description']; ?></textarea><br><br>
+    
+                <label for="status"><b>Κατάσταση: </b></label>
+                <select name="task_status">
+                    <option value="pending" <?php echo $task['status'] === 'pending' ? 'selected' : ''; ?>>Σε εκκρεμότητα</option>
+                    <option value="in-progress" <?php echo $task['status'] === 'in-progress' ? 'selected' : ''; ?>>Σε εξέλιξη</option>
+                    <option value="completed" <?php echo $task['status'] === 'completed' ? 'selected' : ''; ?>>Ολοκληρώθηκε</option>
+                </select><br><br>
+
+                <label for="due_date"><b>Ημερομηνία Προθεσμίας:</b></label><br>
+                <input type="date" name="task_due_date" value="<?php echo $task['due_date']; ?>" required><br><br>
+
+                <label for="assigned_to"><b>Ανάθεση σε: </b><br>(Διαχωρίστε τους χρήστες με κόμμα)</label><br>
+                <input type="text" name="assigned_usernames" value="<?php echo implode(", ", array_column($assigned_users, 'username')); ?>" placeholder="Διαχωρίστε τα ονόματα χρηστών με κόμμα"><br><br>
+
+                <div class="center">
+                    <button type="submit" value="Update Task">Ενημέρωση Εργασίας</button>
+                </div>
+            </form>
+            <div class="center">
+                <a href="../public/tasks.php?list_id=<?php echo $task['task_list_id']; ?>"><button>Ακύρωση</button></a>
+            </div>
+        </div>
+    </div>
+
+    </main>
+  <div id="footer_container"></div>
 </body>
 </html>

@@ -55,21 +55,36 @@ function generateRandomString($length) {
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="author" content="voltmaister & marked-d">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TeamSync - Task Management Website</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="script.js" defer></script>
+  <title>TeamSync</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+  <script src="../assets/script.js" defer></script>
 </head>
 <body>
-    <main>
+  <div id="header_container"></div>
+  <main class="vertical">
+
         <div id="header-container"></div>
-        <h1>Διαγραφή Προφίλ</h1>
-        <p>Είστε σίγουροι πως θέλετε να διαγράψετε το προφίλ σας;</p>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-            <button type="submit" value="Delete Profile">Διαγραφή Προφίλ</button>
-        </form>
-        <p><a href="user_profile.php"><button>Ακύρωση</button></a></p>
+
+        <div class="center">
+            <h1>Διαγραφή Προφίλ</h1>   
+        </div>
+        
+        <div class="vertical">
+            <div class="center">
+                <p>Είστε σίγουροι πως θέλετε να διαγράψετε το προφίλ σας;</p> 
+            </div>
+            <div class="center">
+                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                    <button class="red" type="submit" value="Delete Profile">Διαγραφή Προφίλ</button>   
+                </form>  
+                <a href="../src/user_page.php"><button>Ακύρωση</button></a>   
+            </div>
+            
+        </div>
+
     </main>
-    <div id="footer-container"></div>
+  <div id="footer_container"></div>
 </body>
 </html>

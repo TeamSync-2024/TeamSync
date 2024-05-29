@@ -14,29 +14,26 @@ $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
   <link rel="stylesheet" href="../assets/styles.css">
   <script src="../assets/script.js" defer></script>
 </head>
-<body>
+<body class="blend">
   <div id="header_container"></div>
-
-<!-- if logined show
+  
   <?php if ($user_id):?>
     <div>
-      <nav>
-          <a href="../public/front_page.html"><button>Home</button></a>
-          <a href="../public/help.html"><button>Help</button></a>
-          <a href="../src/user_page.php"><button>Profile</button></a>
-          <button id="themeToggle">&#9790; / &#9728;</button>
+      <nav class="center">
+        <a href="../public/home.php"><button>Home</button></a>
+        <a href="../public/help.html"><button>Help</button></a>
+        <a href="../src/user_page.php"><button>Profile</button></a>
       </nav>
     </div>
   <?php endif;?>
--- end -->
 
   <main class="vertical">
 
-    <div>
+    <div class="center">
       <h1>Καλωσήρθατε στο TeamSync</h1>
     </div>
 
-    <div>
+    <div class="center">
       <h2>Συνεργασία χωρίς εμπόδια, οπουδήποτε και ανά πάσα στιγμή.</h2>
     </div>
 
@@ -85,7 +82,7 @@ $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
       <h2 class="accordion">Ξεκινήστε τώρα</h2>
       <div class="panel">
         <p>Γίνετε μέλος χιλιάδων ομάδων που επωφελούνται ήδη από το TeamSync. Εγγραφείτε τώρα και ανακαλύψτε πόσο απλή και αποτελεσματική μπορεί να είναι η ομαδική συνεργασία.</p>
-        <a href="../public/register.html"><button>Εγγραφείτε δωρεάν</button></a>
+        <a href="../public/register.html"><button>Εγγραφείτε Τώρα</button></a>
       </div>
     </div>
 
