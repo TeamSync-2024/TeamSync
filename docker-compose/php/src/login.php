@@ -34,6 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($password, $storedPasswordHash)) {
             $_SESSION['user_id'] = $row['id'];
             $_SESSION['username'] = $row['username'];
+            $_SESSION['user_role'] = $row['user_role'];
 
             // Regenerate session ID after successful authentication
             session_regenerate_id(true);

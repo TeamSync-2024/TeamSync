@@ -1,16 +1,8 @@
 <?php
-/**
- * User Registration Script
- *
- * This script handles the user registration process, including input validation,
- * password hashing, and sending a SimplePush notification upon successful registration.
- *
- * @author Your Name <your.email@example.com>
- * @version 1.0
- */
+
 
 require_once 'config.php';
-require_once 'simplePushNotification.php';
+require_once 'simple_push_notification.php';
 
 /**
  * Connect to the database

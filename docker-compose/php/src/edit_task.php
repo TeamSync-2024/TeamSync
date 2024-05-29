@@ -4,7 +4,7 @@ ob_start();
 session_start(); // Ensure session is started
 require_once 'config.php'; // Include your config file
 require_once 'auth_check.php'; // Include the auth check file
-require_once 'simplePushNotification.php'; // Adjust the path as necessary
+require_once 'simple_push_notification.php'; // Adjust the path as necessary
 
 $task_id = isset($_GET['task_id']) ? $_GET['task_id'] : null;
 
@@ -76,8 +76,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $stmt->bind_param("sssi", $description, $due_date, $status, $task_id);
         if ($stmt->execute()) {
+            // Fetch the SimplePush keys for the assigned users
+            $stmt = $conn->prepare("SELECT u.simplepush_key
+                                    FROM users u
+                                    JOIN task_assignments ta ON u.id = ta.user_id
+                                    WHERE ta.task_id = ?");
+            $stmt->bind_param("i", $task_id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $assigned_users_keys = $result->fetch_all(MYSQLI_ASSOC);
+            $stmt->close();
+
+            // Send a SimplePush notification to each assigned user
+            $push = new simplePushNotification();
+            foreach ($assigned_users_keys as $user) {
+                $result = $push->sendNotification($user['simplepush_key'], "Task Updated", "The task \"" . $task['title'] . "\" has been updated.");
+                if (!$result) {
+                    error_log("Error sending SimplePush notification to user with key " . $user['simplepush_key']);
+                }
+            }
+
             ob_end_clean();
-            /* header("Location: ../public/tasks.php?list_id=" . $task['task_list_id']); */
+            header("Location: ../public/tasks.php?list_id=" . $task['task_list_id']);
             exit;
         } else {
             error_log("Execute failed: (" . $stmt->errno . ") " . $stmt->error);

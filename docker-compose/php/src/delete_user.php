@@ -11,29 +11,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['confirm_delete'])) {
         $errorMessage = "Connection failed: " . $conn->connect_error;
         error_log($errorMessage);
         // Handle the error appropriately, e.g., display an error message
+        header("Location: error.php?error=" . urlencode($errorMessage));
+        exit();
     }
 
     // Get the user's ID from the session
     $user_id = $_SESSION['user_id'];
 
     // Prepare the update statement to replace mandatory fields with random words
-    $stmt = $conn->prepare("UPDATE users SET username = ?, first_name = ?, last_name = ?, email = ?, simplepush_key= ? WHERE id = ?");
+    $stmt = $conn->prepare("UPDATE users SET username = ?, first_name = ?, last_name = ?, email = ?, simplepush_key = ? WHERE id = ?");
     $random_username = generateRandomString(10);
     $random_first_name = generateRandomString(8);
     $random_last_name = generateRandomString(8);
     $random_email = generateRandomString(10) . "@example.com";
-    $simplepush = " ";
-    $stmt->bind_param("sssssi", $random_username, $random_first_name, $random_last_name, $random_email, $simplepush, $user_id);
+    $new_simplepush_key = " ";
+    $stmt->bind_param("sssssi", $random_username, $random_first_name, $random_last_name, $random_email, $new_simplepush_key, $user_id);
 
     if ($stmt->execute()) {
         // Update successful
         $_SESSION['username'] = $random_username; // Update the session with the new random username
+        session_destroy(); // Destroy the user's session
         header("Location: ../public/logout.php");
-        exit;
+        exit();
     } else {
         $errorMessage = "Error updating user data: " . $stmt->error;
         error_log($errorMessage);
         // Handle the error appropriately, e.g., display an error message
+        header("Location: error.php?error=" . urlencode($errorMessage));
+        exit();
     }
 
     $stmt->close();
@@ -42,12 +47,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['confirm_delete'])) {
 
 // Function to generate a random string
 function generateRandomString($length) {
-    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $randomString = '';
-    for ($i = 0; $i < $length; $i++) {
-        $randomString .= $characters[rand(0, strlen($characters) - 1)];
-    }
-    return $randomString;
+    $bytes = random_bytes(ceil($length / 2));
+    return substr(bin2hex($bytes), 0, $length);
 }
 ?>
 
@@ -77,7 +78,8 @@ function generateRandomString($length) {
             </div>
             <div class="center">
                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                    <button class="red" type="submit" value="Delete Profile">Διαγραφή Προφίλ</button>   
+                    <input type="hidden" name="confirm_delete" value="1"> <!-- Added hidden input -->
+                    <button class="red" type="submit">Διαγραφή Προφίλ</button> <!-- Corrected button type -->
                 </form>  
                 <a href="../src/user_page.php"><button>Ακύρωση</button></a>   
             </div>
