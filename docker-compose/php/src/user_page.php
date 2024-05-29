@@ -15,6 +15,7 @@ $username = $_SESSION['username'];
   <title>TeamSync</title>
   <link rel="stylesheet" href="../assets/styles.css">
   <script src="../assets/script.js" defer></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
   <div id="header_container"></div>
@@ -30,8 +31,35 @@ $username = $_SESSION['username'];
       </p>
     </div>
 
-    <div>
-      <!-- Emfanish stoixeivn profil Orestis job -->
+    <div id='lists-container'>
+          <script>
+            $(document).ready(function() {
+                // Fetch the task lists using AJAX
+                $.ajax({
+                    url: '../src/get_user.php', // Path to your PHP script that returns the task lists
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        // Clear the container
+                        $('#lists-container').empty();
+
+                        // Iterate over the data and create list items
+                        $.each(data, function(index, item) {
+                            var listItem = $('<div class="list">');
+                            listItem.append('<h2>Όνομα:' + item.first_name + '</h2>');
+                            listItem.append('<p>Επίθετο: ' + item.last_name + '</p>');
+                            listItem.append('<p>Username: ' + item.username + '</p>');
+                            listItem.append('<p>Email: ' + item.email + '</p>');  
+                            listItem.append('<p>SimplePush.io Key: ' + item.simplepush_key + '</p>');
+                            $('#lists-container').append(listItem);
+                        });
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.error('Error fetching task lists:', textStatus, errorThrown);
+                    }
+                });
+            });
+          </script>
     </div>
 
     <div class="horizontal">

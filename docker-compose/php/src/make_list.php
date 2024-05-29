@@ -1,7 +1,7 @@
 <?php
 require_once 'auth_check.php';
 require_once 'config.php';
-require_once 'simplePushNotification.php';
+require_once 'simple_push_notification.php';
 
 /**
  * Redirect to the error page with the provided error message.

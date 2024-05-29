@@ -1,7 +1,7 @@
 <?php
 require_once 'auth_check.php'; // Adjust the path as necessary
 require_once 'config.php'; // Adjust the path as necessary
-require_once 'simplePushNotification.php'; // Adjust the path as necessary
+require_once 'simple_push_notification.php'; // Adjust the path as necessary
 ob_start();
 function displayError($message) {
     header("Location: error.php?error=". urlencode($message));
