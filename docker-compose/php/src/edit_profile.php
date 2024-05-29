@@ -56,18 +56,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $stmt->bind_param("ssssssi", $first_name, $last_name, $username, $password, $email, $simplepush_key, $userId);
 
-        $sql = "SELECT * FROM users WHERE id = ?";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("i", $userId);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $user = $result->fetch_assoc();
-        $stmt->close();
-        $pushKey = $user['simplepush_key'];
-
-        //now we will send the message with the class
-        $push = new simplePushNotification();
-        $push->sendNotification($pushKey, "New Task Assigned", "You have been assigned a new task: ".$task_name); 
         if ($stmt->execute()) {
             // Send a SimplePush notification upon successful update
             $pushKey = $user['simplepush_key'];
@@ -123,24 +111,24 @@ function displayError($message) {
     <main class="vertical">
 
     <div class="center">
-        <h1>Ενημέρωση Προφίλ</h1> 
+        <h1>Update Profile</h1> 
     </div>
 
     <div class="center">
         <div class="max_width">
             <form action="" method="post">
                 
-                <label for="first_name"><b>Όνομα:</b></label><br>
+                <label for="first_name"><b>First Name:</b></label><br>
                 <input type="text" id="first_name" name="first_name" value="<?php echo $user['first_name']; ?>"><br><br>
 
-                <label for="last_name"><b>Επώνυμο:</b></label><br>
+                <label for="last_name"><b>Last Name:</b></label><br>
                 <input type="text" id="last_name" name="last_name" value="<?php echo $user['last_name']; ?>"><br><br>
 
                 <label for="username"><b>Username:</b></label><br>
                 <input type="text" id="username" name="username" value="<?php echo $user['username']; ?>"><br><br>
 
-                <label for="password"><b>Κωδικός:</b></label><br>
-                <input type="text" id="password" name="password" value=""><br><br>
+                <label for="password"><b>Password:</b></label><br>
+                <input type="password" id="password" name="password" value=""><br><br>
 
                 <label for="email"><b>Email:</b></label><br>
                 <input type="text" id="email" name="email" value="<?php echo $user['email']; ?>"><br><br>
@@ -149,12 +137,12 @@ function displayError($message) {
                 <input type="text" id="simplepush_key" name="simplepush_key" value="<?php echo $user['simplepush_key']; ?>"><br><br>
                 
                 <div class="center">
-                    <button type="submit" name="update">Ενημέρωση Προφίλ</button><br><br> 
+                    <button type="submit" name="update">Update Profile</button><br><br> 
                 </div>
 
             </form>
             <div class="center">
-                   <a href="../src/user_page.php"><button>Ακύρωση</button></a> 
+                   <a href="../src/user_page.php"><button>Cancel</button></a> 
             </div>
         </div>
     </div>
