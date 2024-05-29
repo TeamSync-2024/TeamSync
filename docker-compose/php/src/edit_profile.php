@@ -5,6 +5,7 @@ session_start(); // Ensure session is started
 
 require_once 'config.php'; // Include your config file
 require_once 'auth_check.php'; // Include the auth check file
+require_once '../src/simplePushNotification.php';
 
 $userId = $_SESSION['user_id'];
 
@@ -83,40 +84,54 @@ $conn->close();
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="author" content="voltmaister & marked-d">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TeamSync - Task Management Website</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="script.js" defer></script>
+  <title>TeamSync</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+  <script src="../assets/script.js" defer></script>
 </head>
 <body>
-    <div id="header-container"></div>
-    <main>
-<form action="" method="post">
-    <h1>Ενημέρωση Προφίλ</h1>
-    <label for="first_name"><b>Όνομα:</b></label><br>
-    <input type="text" id="first_name" name="first_name" value="<?php echo $user['first_name']; ?>"><br><br>
+  <div id="header_container"></div>
+    <main class="vertical">
 
-    <label for="last_name"><b>Επώνυμο:</b></label><br>
-    <input type="text" id="last_name" name="last_name" value="<?php echo $user['last_name']; ?>"><br><br>
+    <div class="center">
+        <h1>Ενημέρωση Προφίλ</h1> 
+    </div>
 
-    <label for="username"><b>Username:</b></label><br>
-    <input type="text" id="username" name="username" value="<?php echo $user['username']; ?>"><br><br>
+    <div class="center">
+        <div class="max_width">
+            <form action="" method="post">
+                
+                <label for="first_name"><b>Όνομα:</b></label><br>
+                <input type="text" id="first_name" name="first_name" value="<?php echo $user['first_name']; ?>"><br><br>
 
-    <label for="password"><b>Κωδικός:</b></label><br>
-    <input type="text" id="password" name="password" value=""><br><br>
+                <label for="last_name"><b>Επώνυμο:</b></label><br>
+                <input type="text" id="last_name" name="last_name" value="<?php echo $user['last_name']; ?>"><br><br>
 
-    <label for="email"><b>Email:</b></label><br>
-    <input type="text" id="email" name="email" value="<?php echo $user['email']; ?>"><br><br>
+                <label for="username"><b>Username:</b></label><br>
+                <input type="text" id="username" name="username" value="<?php echo $user['username']; ?>"><br><br>
 
-    <label for="simplepush_key"><b>SimplePush.io Key:</b></label><br>
-    <input type="text" id="simplepush_key" name="simplepush_key" value="<?php echo $user['simplepush_key']; ?>"><br><br>
+                <label for="password"><b>Κωδικός:</b></label><br>
+                <input type="text" id="password" name="password" value=""><br><br>
 
-    <button type="submit" name="update">Ενημέρωση Προφίλ</button><br><br>
-</form>
-    <a href="./user_page.php">
-        <button>Ακύρωση</button>
-    </a>
+                <label for="email"><b>Email:</b></label><br>
+                <input type="text" id="email" name="email" value="<?php echo $user['email']; ?>"><br><br>
+
+                <label for="simplepush_key"><b>SimplePush.io Key:</b></label><br>
+                <input type="text" id="simplepush_key" name="simplepush_key" value="<?php echo $user['simplepush_key']; ?>"><br><br>
+                
+                <div class="center">
+                    <button type="submit" name="update">Ενημέρωση Προφίλ</button><br><br> 
+                </div>
+
+            </form>
+            <div class="center">
+                   <a href="../src/user_page.php"><button>Ακύρωση</button></a> 
+            </div>
+        </div>
+    </div>
+
     </main>
-    <div id="footer-container"></div>
+  <div id="footer_container"></div>
 </body>
 </html>

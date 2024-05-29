@@ -16,10 +16,13 @@ if (!$list_id) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tasks</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="author" content="voltmaister & marked-d">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TeamSync</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+  <script src="../assets/script.js" defer></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         .list {
             border: 1px solid #ccc;
@@ -29,13 +32,14 @@ if (!$list_id) {
     </style>
 </head>
 <body>
-    <h1>Tasks</h1>
+  <div id="header_container"></div>
+  <main class="vertical">
+
+    <div>
+        <h1>Tasks</h1> 
+    </div>
+    
     <div id="lists-container"></div>
-
-    <a href="./create_task.php?list_id=<?php echo htmlspecialchars($list_id); ?>">
-        <button>Create Task</button>
-    </a>
-
     <script>
         $(document).ready(function() {
             // Get the list_id from the URL query string
@@ -76,8 +80,9 @@ if (!$list_id) {
             });
         });
     </script>
-    <!-- back to lists -->
-    <a href="./lists.php">
-        <button>Back to Lists</button>
+
+    <a href="./create_task.php?list_id=<?php echo htmlspecialchars($list_id); ?>"><button>Δημιουργία Εργασίας</button></a>
+
+    <div id="footer_container"></div>
 </body>
 </html>

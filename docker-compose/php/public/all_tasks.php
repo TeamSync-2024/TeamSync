@@ -6,14 +6,21 @@ $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
+
+$list_id = isset($_GET['list_id']) ? $_GET['list_id'] : null;
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tasks</title>
+  <meta charset="UTF-8">
+  <meta name="author" content="voltmaister & marked-d">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TeamSync</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+  <script src="../assets/script.js" defer></script>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         .list {
@@ -22,12 +29,15 @@ if ($conn->connect_error) {
             margin-bottom: 10px;
         }
     </style>
+
 </head>
 <body>
+  <div id="header_container"></div>
+  <main class="vertical">
     <h1>Tasks</h1>
     <div id="lists-container"></div>
 
-    <a href="./create_task.php?list_id=<?php echo htmlspecialchars($list_id); ?>">
+    <a href="./create_task.php?list_id=<?php echo $list_id; ?>">
         <button>Create Task</button>
     </a>
 
@@ -76,5 +86,7 @@ if ($conn->connect_error) {
     <!-- back to lists -->
     <a href="./lists.php">
         <button>Back to Lists</button>
+        </main>
+  <div id="footer_container"></div>
 </body>
 </html>

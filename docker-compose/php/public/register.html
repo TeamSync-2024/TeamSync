@@ -2,53 +2,66 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="author" content="voltmaister & marked-d">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TeamSync - Task Management Website</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="script.js" defer></script>
-</head>    
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TeamSync - Task Management Website</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="script.js" defer></script>
-</head>    
+  <title>TeamSync</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+  <script src="../assets/script.js" defer></script>
+</head>   
 <body>
   <div id="header_container"></div>
     <main class="vertical">
-      <div>
+
+      <div class="center">
         <h1>Εγγραφή Χρήστη</h1>
       </div>
-      <div>
-        <form action="../src/register.php" method="post">
-          <label for="first_name"><b>Όνομα:</b></label><br>
-          <input type="text" id="first_name" name="first_name" required><br><br>
-    
-          <label for="last_name"><b>Επώνυμο:</b></label><br>
-          <input type="text" id="last_name" name="last_name" required><br><br>
-    
-          <label for="username"><b>Username:</b></label><br>
-          <input type="text" id="username" name="username" required><br><br>
-    
-          <label for="password"><b>Κωδικός:</b></label><br>
-          <input type="password" id="password" name="password" required><br><br>
-    
-          <label for="email"><b>Email:</b></label><br>
-          <input type="email" id="email" name="email" required><br><br>
-    
-          <label for="simplepush_key"><b>SimplePush.io Key:</b></label><br>
-          <input type="text" id="simplepush_key" name="simplepush_key" required><br><br>
-    
-          <button type="submit" value="Register" class="button">Εγγραφή</button>
-        </form>
+
+      <div class="center">
+        <div class="max_width">
+          <form action="../src/register.php" method="post">
+            <label for="first_name"><b>Όνομα:</b></label><br>
+            <input type="text" id="first_name" name="first_name" required><br><br>
+      
+            <label for="last_name"><b>Επώνυμο:</b></label><br>
+            <input type="text" id="last_name" name="last_name" required><br><br>
+      
+            <label for="username"><b>Username:</b></label><br>
+            <input type="text" id="username" name="username" required><br><br>
+      
+            <label for="password"><b>Κωδικός:</b></label><br>
+            <input type="password" id="password" name="password" required><br><br>
+      
+            <label for="email"><b>Email:</b></label><br>
+            <input type="email" id="email" name="email" required><br><br>
+      
+            <label for="simplepush_key"><b>SimplePush.io Key:</b></label><br>
+            <input type="text" id="simplepush_key" name="simplepush_key" required><br><br>
+
+            <div class="center">
+              <button type="submit" value="Register" class="button">Εγγραφή</button>
+            </div>
+
+          </form>
+        </div>
       </div>
-      <div>
-        <p> 
-          Είστε ήδη μέλος; <a href="./login.html"><button>Log In</button></a>
-        </p>
+
+      <div><br></div>
+
+      <div class="center">   
+        <div class="max_width">
+
+          <div class="center">
+            <p> Είστε ήδη μέλος; </p>
+          </div>
+
+          <div>
+            <a href="./login.html"><button>Συνδεθείτε Τώρα</button></a>
+          </div>
+          
+        </div>    
+
       </div>
     </main>
   <div id="footer_container"></div>    
 </body>
-
 </html>

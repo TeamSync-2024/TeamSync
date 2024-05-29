@@ -10,22 +10,47 @@ $username = $_SESSION['username'];
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="author" content="voltmaister & marked-d">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TeamSync - Task Management Website</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="script.js" defer></script>
+  <title>TeamSync</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+  <script src="../assets/script.js" defer></script>
 </head>
 <body>
-    <div id="header-container"></div>
-    <main>
-    <h1>Καλωσήρθατε, <?php echo $username; ?>!</h1>
-    <p>Αυτή είναι η σελίδα του προφίλ σας. Μπορείτε να επεξεργαστειτε τα στοιχεια σας, να τα διαγραψετε ή να κανετε αποσυνδεση.</p>
-    <p><a href="edit_profile.php">Edit Profile</a></p>
-    <form action="delete_user.php" method="post">
-        <input type="submit" value="Delete Profile">
-    </form>
-    <p><a href="../public/logout.php">Logout</a></p>
+  <div id="header_container"></div>
+  <main class="vertical">
+    
+    <div class="center">
+      <h1>Καλωσήρθατε, <?php echo $username; ?>!</h1>
+    </div>
+    
+    <div class="center">
+      <p>
+        Αυτή είναι η σελίδα του προφίλ σας. Μπορείτε να επεξεργαστείτε τα στοιχεία σας, να τα διαγράψετε ή να κάνετε αποσύνδεση.
+      </p>
+    </div>
+
+    <div>
+      <!-- Emfanish stoixeivn profil Orestis job -->
+    </div>
+
+    <div class="horizontal">
+
+      <div class="max_width">
+        <a href="../src/edit_profile.php"><button>Επεξεργασία Προφίλ</button></a>
+      </div>
+      <div class="max_width">
+        <form action="delete_user.php" method="post">
+            <button class="red" type="submit" value="Delete Profile">Διαγραφή Προφίλ</button>
+        </form> 
+      </div>
+      <div class="max_width">
+        <a href="../public/logout.php"><button class="orange">Αποσύνδεση</button></a>
+      </div>
+
+    </div>
+
     </main>
-    <div id="footer-container"></div>
+  <div id="footer_container"></div>
 </body>
 </html>
