@@ -47,28 +47,30 @@ $conn->close();
 <body>
   <div id="header_container"></div>
   <main class="vertical">
-    <div>
-        <h2>Δημιουργείτε μια εργασία για τη λίστα: <b><?php echo ($list_name);?></b></h2>
+    <div class="center">
+        <h2>Δημιουργείτε μια νέα εργασία για τη λίστα: <b><?php echo ($list_name);?></b></h2>
     </div>
-    <div>
-        <h3>Νέα Εργασία:</h3>
-    </div>
-    <div>
-        <form action="../src/make_task.php?list_id=<?php echo htmlspecialchars($list_id);?>" method="post">
+    <div class="center">
+        <div class="max_width">
+            <form action="../src/make_task.php?list_id=<?php echo htmlspecialchars($list_id);?>" method="post">
 
-            <input type="hidden" name="list_id" value="<?php echo htmlspecialchars($list_id);?>">
+                <input type="hidden" name="list_id" value="<?php echo htmlspecialchars($list_id);?>">
 
-            <label for="task_title"><b>Όνομα Εργασίας:</b></label><br>
-            <input type="text" name="task_title" placeholder="Όνομα εργασίας" required><br><br>
+                <label for="task_title"><b>Όνομα Εργασίας:</b></label><br>
+                <input type="text" name="task_title" placeholder="Όνομα εργασίας" required><br><br>
 
-            <label for="task_description"><b>Περιγραφή Εργασίας:</b></label><br>
-            <textarea name="task_description" placeholder="Περιγραφή εργασίας" required></textarea><br><br>
+                <label for="task_description"><b>Περιγραφή Εργασίας:</b></label><br>
+                <textarea name="task_description" cols="26" rows="3" placeholder="Περιγραφή εργασίας" required></textarea><br><br>
 
-            <label for="task_due_date"><b>Ημερομηνία Προθεσμίας:</b></label><br>
-            <input type="date" name="task_due_date" required><br><br>
-
-            <button type="submit" value="Create Task">Δημιουργία Εργασίας</button>
-        </form>
+                <label for="task_due_date"><b>Ημερομηνία Προθεσμίας:</b></label><br>
+                <input type="date" name="task_due_date" required><br><br>
+                
+                <div class="center">
+                    <button type="submit" value="Create Task">Δημιουργία Εργασίας</button> 
+                </div>
+                
+            </form>
+        </div>
     </div>
     </main>
   <div id="footer_container"></div>

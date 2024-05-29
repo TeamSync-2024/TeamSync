@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="author" content="voltmaister & marked-d">
@@ -10,27 +9,50 @@
   <script src="../assets/script.js" defer></script>
 </head>
 <body>
-    <div id="header_container"></div>
-      <main>
-        <h1>User Login</h1>
+  <div id="header_container"></div>
+  <main class="vertical">
+    
+    <div class="center">
+      <h1>Σύνδεση Χρήστη</h1>
+    </div>
+    
+    <div class="center">
+      <div class="max_width">
         <form action="../src/login.php" method="post">
-            <label for="username"><b>Username:</b></label><br>
-            <input type="text" id="username" name="username" required><br><br>
-      
-            <label for="password"><b>Κωδικός:</b></label><br>
-            <input type="password" id="password" name="password" required><br><br>
+          <label for="username"><b>Username:</b></label><br>
+          <input type="text" id="username" name="username" required><br><br>
+    
+          <label for="password"><b>Κωδικός:</b></label><br>
+          <input type="password" id="password" name="password" required><br><br>
 
-            <label for="remember_me">Να παραμείνω συνδεδεμένος</label>
-            <input type="checkbox" id="remember_me" name="remember_me">
+          <label for="remember_me">Μείνε συνδεδεμένος</label>
+          <input type="checkbox" id="remember_me" name="remember_me">
 
+          <div class="center">
             <button type="submit" value="Login" class="button">Log In</button>
+          </div>
         </form>
-          <p>Δεν είστε μέλος; 
-            <a href="./register.html">
-              <button>Εγγραφείτε τώρα!</button>
-            </a>
-          </p>
-      </main>
-    <div id="footer_container"></div>
+      </div>
+    </div>
+
+    <div><br></div>
+
+    <div class="center">   
+      <div class="max_width">
+
+        <div class="center">
+          <p>Δεν είστε μέλος;</p>
+        </div>
+
+        <div>
+          <a href="./register.html"><button>Εγγραφείτε τώρα!</button></a>
+        </div>
+        
+      </div>    
+
+    </div>
+
+  </main>
+  <div id="footer_container"></div>
 </body>
 </html>

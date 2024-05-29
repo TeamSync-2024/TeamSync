@@ -1,4 +1,4 @@
-// Header footer template
+// Header footer from header_footer.html
 function loadHeaderFooter() {
   const headerContainer = document.getElementById('header_container');
   const footerContainer = document.getElementById('footer_container');
@@ -15,13 +15,25 @@ function loadHeaderFooter() {
       const themeToggle = document.getElementById("themeToggle");
       const body = document.body;
 
+      // Load theme preference from cookie
+      const theme = document.cookie.replace(
+        /(?:(?:^|.*;\s*)theme\s*=\s*([^;]*).*$)|^.*$/,
+        "$1"
+      );
+
+      if (theme === "dark") {
+        body.classList.add("dark-mode");
+        themeToggle.innerHTML = "&#9728;"; // Sun icon
+      } else {
+        themeToggle.innerHTML = "&#9790;"; // Moon icon
+      }
+
       themeToggle.addEventListener("click", () => {
         body.classList.toggle("dark-mode");
         const isDarkMode = body.classList.contains("dark-mode");
-        // =themeToggle.textContent = isDarkMode ? "Light Mode" : "Dark Mode"; // changed to &#9790; / &#9728;
+        themeToggle.innerHTML = isDarkMode ? "&#9728;" : "&#9790;"; // Toggle between sun and moon
         document.cookie = `theme=${isDarkMode ? "dark" : "light"}; path=/`;
       });
-
     })
     .catch(error => console.error('Error loading header and footer:', error));
 }
@@ -29,31 +41,21 @@ function loadHeaderFooter() {
 window.onload = loadHeaderFooter;
 
 // Accordion functionality
-const accordions = document.querySelectorAll(".accordion");
+document.addEventListener("DOMContentLoaded", () => {
+  const accordions = document.querySelectorAll(".accordion");
 
-accordions.forEach((accordion) => {
-  accordion.addEventListener("click", () => {
-    accordion.classList.toggle("active");
-    const panel = accordion.nextElementSibling;
-    if (panel.style.maxHeight) {
-      panel.style.maxHeight = null;
-    } else {
-      panel.style.maxHeight = panel.scrollHeight + "px";
-    }
+  accordions.forEach((accordion) => {
+    accordion.addEventListener("click", () => {
+      accordion.classList.toggle("active");
+      const panel = accordion.nextElementSibling;
+      if (panel.style.maxHeight) {
+        panel.style.maxHeight = null;
+      } else {
+        panel.style.maxHeight = panel.scrollHeight + "px";
+      }
+    });
   });
+
+  // Get the form element
+  const form = document.getElementById('registrationForm');
 });
-
-// Load theme preference from cookie
-const theme = document.cookie.replace(
-  /(?:(?:^|.*;\s*)theme\s*=\s*([^;]*).*$)|^.*$/,
-  "$1"
-);
-if (theme === "dark") {
-  body.classList.add("dark-mode");
-  themeToggle.textContent = "Light Mode"; // Set button text based on loaded mode
-} else {
-  themeToggle.textContent = "Dark Mode"; // Set button text based on loaded mode
-}
-
-// Get the form element
-const form = document.getElementById('registrationForm');
