@@ -80,5 +80,6 @@ $username = $_SESSION['username'];
 
     </main>
   <div id="footer_container"></div>
+  <div id="footer_container"></div>
 </body>
 </html>
