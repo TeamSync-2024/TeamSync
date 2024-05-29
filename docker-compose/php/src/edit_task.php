@@ -4,7 +4,7 @@ ob_start();
 session_start(); // Ensure session is started
 require_once 'config.php'; // Include your config file
 require_once 'auth_check.php'; // Include the auth check file
-require_once 'simplePushNotification.php'; // Adjust the path as necessary
+require_once 'simple_push_notification.php'; // Adjust the path as necessary
 
 $task_id = isset($_GET['task_id']) ? $_GET['task_id'] : null;
 
@@ -97,7 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
 
             ob_end_clean();
-            /* header("Location: ../public/tasks.php?list_id=" . $task['task_list_id']); */
+            header("Location: ../public/tasks.php?list_id=" . $task['task_list_id']);
             exit;
         } else {
             error_log("Execute failed: (" . $stmt->errno . ") " . $stmt->error);
