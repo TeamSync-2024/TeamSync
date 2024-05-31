@@ -78,11 +78,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit();
         } else {
             $error_message = "Invalid username or password.";
-            echo $error_message;
+            header("Location: error.php?error=" . urlencode($error_message));
         }
     } else {
         $error_message = "Invalid username or password.";
-        echo $error_message;
+        header("Location: error.php?error=" . urlencode($error_message));
     }
 
     $stmt->close();

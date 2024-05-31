@@ -42,6 +42,7 @@ if (!allRequiredSessionsSet($required_session_vars)) {
             $row = $result->fetch_assoc();
             $_SESSION['user_id'] = $row['id'];
             $_SESSION['username'] = $row['username'];
+            $_SESSION['user_role'] = $row['user_role'];
 
             // Regenerate session ID after restoring the session
             session_regenerate_id(true);

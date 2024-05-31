@@ -11,7 +11,7 @@ if ($conn->connect_error) {
 $user_id = $_SESSION['user_id']; // Assuming the user ID is stored in the session
 
 // SQL query to fetch tasks assigned to the current user that are in lists not created by the current user
-$sql = "SELECT t.*, GROUP_CONCAT(DISTINCT u.username) AS assigned_users
+$sql = "SELECT t.*, tl.title AS task_list_title ,GROUP_CONCAT(DISTINCT u.username) AS assigned_users
         FROM tasks t
         JOIN task_assignments ta ON t.id = ta.task_id
         JOIN users u ON ta.user_id = u.id
@@ -34,6 +34,7 @@ function toJson($result) {
             "due_date" => $row['due_date'],
             "status" => $row['status'],
             "id" => $row['id'],
+            "task_list_title" => $row['task_list_title'],
             "assigned_users" => $row['assigned_users']
         );
     }

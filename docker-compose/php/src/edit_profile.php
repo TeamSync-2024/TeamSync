@@ -96,30 +96,18 @@ function displayError($message) {
 <head>
   <meta charset="UTF-8">
   <meta name="author" content="voltmaister & marked-d">
-  <meta name="author" content="voltmaister & marked-d">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TeamSync</title>
-  <link rel="stylesheet" href="../assets/styles.css">
-  <script src="../assets/script.js" defer></script>
   <title>TeamSync</title>
   <link rel="stylesheet" href="../assets/styles.css">
   <script src="../assets/script.js" defer></script>
 </head>
 <body>
-  <div id="header_container"></div>
-    <main class="vertical">
+    <div id="header_container"></div>
 
-    <div class="center">
-        <h1>Update Profile</h1> 
-    </div>
+    <?php if (isset($_SESSION['user_id'])): ?>
+        <div id="navigation_container"></div>
+    <?php endif;?>
 
-    <div class="center">
-        <div class="max_width">
-            <form action="" method="post">
-                
-                <label for="first_name"><b>First Name:</b></label><br>
-                <input type="text" id="first_name" name="first_name" value="<?php echo $user['first_name']; ?>"><br><br>
-  <div id="header_container"></div>
     <main class="vertical">
 
     <div class="center">

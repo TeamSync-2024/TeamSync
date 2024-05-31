@@ -45,8 +45,13 @@ $conn->close();
   <script src="../assets/script.js" defer></script>
 </head>
 <body>
-  <div id="header_container"></div>
-  <main class="vertical">
+    <div id="header_container"></div>
+
+    <?php if (isset($_SESSION['user_id'])): ?>
+        <div id="navigation_container"></div>
+    <?php endif;?>
+
+    <main class="vertical">
     <div class="center">
         <h2>Δημιουργείτε μια νέα εργασία για τη λίστα: <b><?php echo ($list_name);?></b></h2>
     </div>
