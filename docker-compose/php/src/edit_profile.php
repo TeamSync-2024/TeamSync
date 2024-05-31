@@ -102,28 +102,33 @@ function displayError($message) {
   <script src="../assets/script.js" defer></script>
 </head>
 <body>
-  <div id="header_container"></div>
+    <div id="header_container"></div>
+
+    <?php if (isset($_SESSION['user_id'])): ?>
+        <div id="navigation_container"></div>
+    <?php endif;?>
+
     <main class="vertical">
 
     <div class="center">
-        <h1>Update Profile</h1> 
+        <h1>Ενημέρωση Προφίλ</h1> 
     </div>
 
     <div class="center">
         <div class="max_width">
             <form action="" method="post">
                 
-                <label for="first_name"><b>First Name:</b></label><br>
+                <label for="first_name"><b>Όνομα:</b></label><br>
                 <input type="text" id="first_name" name="first_name" value="<?php echo $user['first_name']; ?>"><br><br>
 
-                <label for="last_name"><b>Last Name:</b></label><br>
+                <label for="last_name"><b>Επώνυμο:</b></label><br>
                 <input type="text" id="last_name" name="last_name" value="<?php echo $user['last_name']; ?>"><br><br>
 
                 <label for="username"><b>Username:</b></label><br>
                 <input type="text" id="username" name="username" value="<?php echo $user['username']; ?>"><br><br>
 
-                <label for="password"><b>Password:</b></label><br>
-                <input type="password" id="password" name="password" value=""><br><br>
+                <label for="password"><b>Κωδικός:</b></label><br>
+                <input type="text" id="password" name="password" value=""><br><br>
 
                 <label for="email"><b>Email:</b></label><br>
                 <input type="text" id="email" name="email" value="<?php echo $user['email']; ?>"><br><br>
@@ -132,12 +137,12 @@ function displayError($message) {
                 <input type="text" id="simplepush_key" name="simplepush_key" value="<?php echo $user['simplepush_key']; ?>"><br><br>
                 
                 <div class="center">
-                    <button type="submit" name="update">Update Profile</button><br><br> 
+                    <button type="submit" name="update">Ενημέρωση Προφίλ</button><br><br> 
                 </div>
 
             </form>
             <div class="center">
-                   <a href="../src/user_page.php"><button>Cancel</button></a> 
+                   <a href="../src/user_page.php"><button>Ακύρωση</button></a> 
             </div>
         </div>
     </div>

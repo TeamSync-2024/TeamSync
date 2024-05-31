@@ -15,76 +15,54 @@ require_once '../src/config.php';
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-  <div id="header_container"></div>
-  <main class="vertical">
-    <div>
-      <h1>Task Lists</h1>  
-    </div>
+    <div id="header_container"></div>
 
-    <div id="lists-container"></div>
-    <script>
-        $(document).ready(function() {
-            // Fetch the task lists using AJAX
-            $.ajax({
-                url: '../src/get_lists.php', // Path to your PHP script that returns the task lists
-                type: 'GET',
-                dataType: 'json',
-                success: function(data) {
-                    // Clear the container
-                    $('#lists-container').empty();
-
-                    // Iterate over the data and create list items
-                    $.each(data, function(index, item) {
-                        var listItem = $('<div class="list">');
-                        listItem.append('<h2>' + item.title + '</h2>');
-                        listItem.append('<p>' + item.description + '</p>');
-                        listItem.append('<p>Created At: ' + item.created_at + '</p>');
-                        listItem.append('<a href="../public/tasks.php?list_id=' + encodeURIComponent(item.list_id) + '">View Tasks</a>');
-
-                        // Append the list item to the container
-                        $('#lists-container').append(listItem);
-                    });
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    console.error('Error fetching task lists:', textStatus, errorThrown);
-                }
-            });
-        });
-    </script>
-    <div>
-        <a href="./create_list.php"><button>Create List</button></a>    
-    </div>
-
-    <div>
-        <h2>Assigned to me </h2> 
-    </div>
+    <?php if (isset($_SESSION['user_id'])): ?>
+      <div id="navigation_container"></div>
+    <?php endif;?>
     
-    <div id="tasks-container"></div>
-    <script>
-        $.ajax({
-            url: '../src/get_independent_task.php',
-            type: 'GET',
-            dataType: 'json',
-            success: function(data) {
-                $('#tasks-container').empty();
-                $.each(data, function(index, item) {
-                    var listItem = $('<div class="list">');
-                    listItem.append('<h2>' + item.title + '</h2>');
-                    listItem.append('<p>' + item.description + '</p>');
-                    var dueDate = new Date(item.due_date);
-                    var formattedDueDate = dueDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-                    listItem.append('<p>Finished By: ' + formattedDueDate + '</p>');
-                    listItem.append('<p>Status: ' + item.status + '</p>');
-                    listItem.append('<p>Assigned To: ' + item.assigned_users + '</p>');
-                    listItem.append('<a href="../src/edit_task.php?task_id=' + encodeURIComponent(item.id) + '">View Task</a>');
-                    $('#tasks-container').append(listItem);
-                });
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                console.error('Error fetching tasks:', textStatus, errorThrown);
-            }
-        });
-    </script>
+    <main class="vertical">
+    <div class="center">
+      <h1>Λίστες Εργασιών</h1>  
+    </div>
+
+    <div style="align-self: flex-end;">
+      <input type="text" id="taskSearch" placeholder="Αναζήτηση λίστας...">
+    </div>
+
+    <div id="lists_container" class="horizontal_latest"></div>
+
+    <div class="center">
+        <a href="./create_list.php"><button>Δημιουργία Λίστας</button></a>    
+    </div>
+
+    <div class="center">
+        <h2>Εργασίες που μου έχουν ανατεθεί </h2> 
+    </div>
+
+    <div class="center">
+      <div id="tasks_container"></div>
+    </div>
+
+    <div class="horizontal">
+            <div>
+                <div class="vertical">
+                    <div class="pending">
+                        <h2 class="center">Σε Αναμονή</h2>
+                    </div>
+                    <div id="assigned_pending_tasks" class="vertical"></div>
+                </div>
+            </div>
+
+            <div>
+                <div class="vertical" >
+                    <div class="progress">
+                        <h2 class="center">Σε Εξέλιξη</h2>
+                    </div>
+                    <div id="assigned_in_progress_tasks" class="vertical"></div>
+                </div>
+            </div>
+        </div>
     
     </main>
   <div id="footer_container"></div>

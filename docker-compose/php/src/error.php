@@ -9,8 +9,13 @@
   <script src="../assets/script.js" defer></script>
 </head>
 <body>
-  <div id="header_container"></div>
-  <main class="vertical">
+    <div id="header_container"></div>
+    
+    <?php if (isset($_SESSION['user_id'])): ?>
+        <div id="navigation_container"></div>
+    <?php endif;?>
+
+    <main class="vertical">
     
     <div class="center">
         <h1>Σφάλμα</h1> 
@@ -27,7 +32,7 @@
     </div>
 
     <div class="center">
-        <a href="../public/home.php"><button>Επιστροφή στην αρχική</button></a>
+        <a href="../index.php"><button>Επιστροφή στην αρχική</button></a>
     </div>
 
   </main>

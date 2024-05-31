@@ -1,7 +1,0 @@
-FROM php:8.2.18-apache
-
-# Install additional PHP extensions if needed
-# Example: RUN docker-php-ext-install mysqli pdo pdo_mysql
-
-# Copy your PHP files
-COPY php/ /var/www/html/

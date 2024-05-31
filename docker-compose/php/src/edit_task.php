@@ -45,7 +45,7 @@ $assigned_users = $result->fetch_all(MYSQLI_ASSOC);
 $stmt->close();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $description = filter_input(INPUT_POST, 'task_description', FILTER_UNSAFE_RAW);
+    $description = filter_input(INPUT_POST, 'description', FILTER_UNSAFE_RAW);
     $due_date = filter_input(INPUT_POST, 'task_due_date', FILTER_UNSAFE_RAW);
     $status = filter_input(INPUT_POST, 'task_status', FILTER_UNSAFE_RAW);
     $assigned_usernames = filter_input(INPUT_POST, 'assigned_usernames', FILTER_UNSAFE_RAW);
@@ -120,8 +120,13 @@ $conn->close();
   <script src="../assets/script.js" defer></script>
 </head>
 <body>
-  <div id="header_container"></div>
-  <main class="vertical">
+    <div id="header_container"></div>
+
+    <?php if (isset($_SESSION['user_id'])): ?>
+        <div id="navigation_container"></div>
+    <?php endif;?>
+
+    <main class="vertical">
     <div class="center">
         <h1>Εργασία: <?php echo $task['title']; ?></b></h1>
     </div>
@@ -131,13 +136,13 @@ $conn->close();
             <form action="" method="post">
 
                 <label for="description"><b>Περιγραφή Εργασίας:</b></label><br>
-                <textarea name="description" placeholder="Περιγραφή εργασίας" cols="35" rows="5" required><?php echo $task['description']; ?></textarea><br><br>
-    
+                <textarea name="description" cols="35" rows="5" required><?php echo $task['description']; ?></textarea><br><br>
+
                 <label for="status"><b>Κατάσταση: </b></label>
                 <select name="task_status">
-                    <option value="pending" <?php echo $task['status'] === 'pending' ? 'selected' : ''; ?>>Σε εκκρεμότητα</option>
+                    <option value="pending" <?php echo $task['status'] === 'pending' ? 'selected' : ''; ?>>Σε αναμονή</option>
                     <option value="in-progress" <?php echo $task['status'] === 'in-progress' ? 'selected' : ''; ?>>Σε εξέλιξη</option>
-                    <option value="completed" <?php echo $task['status'] === 'completed' ? 'selected' : ''; ?>>Ολοκληρώθηκε</option>
+                    <option value="completed" <?php echo $task['status'] === 'completed' ? 'selected' : ''; ?>>Ολοκληρωμένη</option>
                 </select><br><br>
 
                 <label for="due_date"><b>Ημερομηνία Προθεσμίας:</b></label><br>

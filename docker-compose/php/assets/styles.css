@@ -1,25 +1,14 @@
-/* borders */
-
-/* body,header,main,div,footer{
-  border: solid; 
-} */
-
 body {
   font-family: Arial, sans-serif;
   margin: 0;
-  padding: 10px;
+  padding: 5px;
   background-color: #FFFFFF;
   color: #1d3858;
   height: 100%;
   min-height: 97vh;
   display: flex;
   flex-direction: column;
-}
-
-.blend{
-  /* background: transparent linear-gradient( rgb(255, 255, 255),rgb(169, 225, 255)) no-repeat;
-  background-blend-mode: normal; */
-  background: linear-gradient( rgb(255, 255, 255),rgb(222, 235, 255)) no-repeat;
+  background: linear-gradient(to right, #FFFFFF, #dff0ff);
 }
 
 header {
@@ -27,7 +16,7 @@ header {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
-  border-bottom: 1px solid #375A82;
+  border-bottom: 3px solid #375A82;
 }
 
 .logo {
@@ -46,19 +35,27 @@ main{
   flex-grow: 1;
 }
 
-/* div{
-  /* border: solid; 
-} */
-
 .vertical{
   display: flex;
   flex-direction: column;
+}
+
+.vertical_latest{
+  display: flex;
+  flex-direction: column-reverse;
 }
 
 .horizontal{
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+}
+
+.horizontal_latest{
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row-reverse;
+  overflow-y: scroll;
 }
 
 .horizontal_no_space{
@@ -74,6 +71,32 @@ main{
 
 .max_width{
   width: max-content;
+}
+
+.grid{
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
+.pending{
+  background-color: #d0d0d0;
+  border: solid 3px;
+  margin: 5px;
+  min-width: 170px;
+}
+
+.progress{
+  background-color: #d8b03a;
+  border: solid 3px;
+  margin: 5px;
+  min-width: 170px;
+}
+
+.completed{
+  background-color: #68e368;
+  border: solid 3px;
+  margin: 5px;
+  min-width: 170px;
 }
 
 a {
@@ -96,8 +119,15 @@ button {
   background-color: #921818;  
 }
 
-.orange{
-  background-color: #AB5C08;
+.nav_bttn{
+  background-color: #4aabff;
+  border-radius: 0%;
+  font-size: large;
+  padding: 0px;
+}
+
+.navigation{
+  border: solid 3px;
 }
 
 select {
@@ -111,7 +141,7 @@ select {
 }
 
 .accordion {
-  background-color: #f2f2f2;
+  background: linear-gradient(to  left, #dff0ff, #f2f2f2);
   color: #375A82;
   cursor: pointer;
   padding: 18px;
@@ -128,6 +158,7 @@ select {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.2s ease-out;
+  background: linear-gradient(to right, #FFFFFF, #dff0ff);
 }
 
 footer {
@@ -136,23 +167,58 @@ footer {
   padding: 0;
   margin-top: 10px;
   font-size: medium;
-  border-top: 1px solid #375A82;
+  border-top: 3px solid #375A82;
+}
+
+/* Tables */
+
+table.user-table {
+  width: max-content;
+}
+table.user-table, table.user-table th, table.user-table td {
+  border: 3px solid #1d3858;
+}
+table.user-table td {
+  padding: 8px;
+  text-align: left;
+}
+table.user-table td:first-child {
+  font-weight: bold;
+}
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+/* Lists */
+
+.list {
+  border: 2px #1d3858;
+  border-style: dashed;
+  padding: 10px;
+  margin: 5px;
+  width: auto;
+  height: auto;
+  min-width: 170px;
+  min-height: 265px;
 }
 
 /* Dark Mode */
 .dark-mode {
-  background-color: #262b32;
+  background-color: #1c2839;
   color: #dff0ff;
+  background: linear-gradient(to right, #375A82, #1c2839);
 }
 
 .dark-mode .accordion {
-  background-color: #1963b4;
+  background: linear-gradient(to  left, #1963b4, #375A82);
   color: #dff0ff;
 }
 
 .dark-mode .panel {
-  background-color: #375A82;
+  background-color: #1c2839;
   color: #dff0ff;
+  background: linear-gradient(to  left, #1963b4, #375A82);
 }
 
 .dark-mode button {
@@ -160,7 +226,73 @@ footer {
   color: #dff0ff;
 }
 
-.dark-mode footer {
-  background-color: #262b32;
+.dark-mode .red {
+  background-color: #921818;  
+}
+
+.dark-mode .nav_bttn {
+  background-color: #2677d2;
   color: #dff0ff;
+}
+
+.dark-mode footer {
+  color: #dff0ff;
+}
+
+.dark-mode .pending{
+  background-color: #979797;
+}
+
+.dark-mode .progress{
+  background-color: #9f8434;
+}
+
+.dark-mode .completed{
+  background-color: #3d9f3d;
+}
+
+.dark-mode .list {
+  border: 2px #dff0ff;
+  border-style: dashed;
+}
+
+.dark-mode select{
+  background-color: #2599ff;
+}
+
+.dark-mode table{
+  border: 3px solid #dff0ff;
+}
+
+.dark-mode table.user-table{
+  border: 3px solid #dff0ff;
+}
+
+.dark-mode table.user-table th{
+  border: 3px solid #dff0ff;
+}
+
+.dark-mode table.user-table td{
+  border: 3px solid #dff0ff;
+}
+
+/* animations*/
+
+@keyframes slideIn{
+  from{
+    transform: translateX(-100%);
+  }
+  to{
+    transform: translateX(0);
+  }
+}
+
+.slideIn{
+  animation-name: slideIn;
+  animation-duration: 1s;
+  animation-timing-function: ease-in;
+  animation-delay: 0s;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-fill-mode: none;
 }
